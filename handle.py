@@ -26,18 +26,18 @@ class Handle(object):
             sha1 = hashlib.sha1()
             map(sha1.update, my_list)
             hashcode = sha1.hexdigest()
-            print "handle/GET func: hashcode, signature: ", hashcode, signature  # 打印后台日志
+            print ("handle/GET func: hashcode, signature: ", hashcode, signature)  # 打印后台日志
             if hashcode == signature:
                 return echostr
             else:
                 return ""
-        except Exception, Argument:
+        except (Exception, Argument):
             return Argument
 
     def POST(self):
         try:
             webData = web.data()
-            print "Handle Post webdata is \n", webData  # 打印后台日志
+            print ("Handle Post webdata is \n", webData)  # 打印后台日志
             recMsg = receive.parse_xml(webData)
 
             if isinstance(recMsg, receive.Msg):
@@ -58,13 +58,13 @@ class Handle(object):
                 toUser = recMsg.FromUserName
                 fromUser = recMsg.ToUserName
                 if recMsg.Event == 'CLICK':
-                    print 'It is a CLICK event'
+                    print ('It is a CLICK event')
                     content = u'功能正在开发中，敬请期待..'.encode('utf-8')
                     replyMsg = reply.TextMsg(toUser, fromUser, content)
                     return replyMsg.send()
 
-            print "暂且不处理"
+            print ("暂且不处理")
             return reply.Msg().send()
 
-        except Exception, Argment:
+        except (Exception, Argment):
             return Argment
