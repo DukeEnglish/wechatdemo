@@ -4,6 +4,10 @@ import hashlib
 import reply
 import receive
 import web
+from config import Config
+from generate_poem import PoetryModel
+model = PoetryModel(Config)
+print('model loaded')
 
 
 class Handle(object):
@@ -12,7 +16,7 @@ class Handle(object):
         try:
             data = web.input()
             if len(data) == 0:
-                return "hello, this is handle view"
+                return "hi, 这里是一个新的世界"
 
             # 首次绑定公众号时需要对签名进行验证
             signature = data.signature
@@ -45,7 +49,7 @@ class Handle(object):
                 fromUser = recMsg.ToUserName
                 if recMsg.MsgType == 'text':
                     content = recMsg.Content
-                    replyMsg = reply.TextMsg(toUser, fromUser, content)
+                    replyMsg = reply.TextMsg(toUser, fromUser, content, model ) 
                     return replyMsg.send()
                 if recMsg.MsgType == 'image':
                     mediaId = recMsg.MediaId

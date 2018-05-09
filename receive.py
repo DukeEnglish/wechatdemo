@@ -32,6 +32,20 @@ class Msg(object):
         self.MsgId = xmlData.find('MsgId').text
 
 
+def subscribe(message):
+    return "您好！欢迎关注“XLearn学会学习”！\n \
+    我是一个分享高效学习，交流健康生活和专注自我提升的智能助手，可以叫我“小学”哦[愉快]。\n \
+    我专注于三个方面：学习提升，心灵成长和素食健康。\n \
+    欢迎和我聊天（文字语音都可以哦）[愉快]\n \
+    我的生活技能：高效学习，成长分享，暖心素食\n \
+    让我们一起成长，每天充满正能量！[太阳]"
+
+
+def unsubscribe(message):
+    return "谢谢您一路相伴！"
+
+
+
 class TextMsg(Msg):
     def __init__(self, xmlData):
         Msg.__init__(self, xmlData)

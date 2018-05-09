@@ -10,14 +10,16 @@ class Msg(object):
     def send(self):
         return "success"
 
-
+# 在这里处理如何返回发来的信息，主要是重新返回内容
 class TextMsg(Msg):
-    def __init__(self, toUserName, fromUserName, content):
+    def __init__(self, toUserName, fromUserName, content, model):
         self.__dict = dict()
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        self.__dict['Content'] = content
+        sen = model.predict_hide('祝周晶锦') 
+        self.__dict['Content'] = sen
+        
 
     def send(self):
         XmlForm = """
