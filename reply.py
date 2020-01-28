@@ -17,7 +17,7 @@ class TextMsg(Msg):
         self.__dict['ToUserName'] = toUserName
         self.__dict['FromUserName'] = fromUserName
         self.__dict['CreateTime'] = int(time.time())
-        sen = model.predict_hide('祝周晶锦') 
+        sen = model.predict_hide('测试代码') 
         self.__dict['Content'] = sen
         
 
